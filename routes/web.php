@@ -29,3 +29,10 @@ Route::get('/thank-you', function () {
 
 
 
+Route::get('/blog-home', function () {
+    return view('blog.index.blade.php');
+});
+
+
+
+
