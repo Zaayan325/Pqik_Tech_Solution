@@ -12,6 +12,10 @@ class Comment extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'approve' => 'boolean',
+    ];
+
     public function blog() : BelongsTo
     {
         return $this->belongsTo(Blog::class);

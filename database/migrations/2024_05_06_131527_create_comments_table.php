@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('comment');
+            $table->boolean('approve')->default(0);
             $table->foreignId('blogs_id')->constrained();
             $table->timestamp('Approved_at');
             $table->timestamps();

@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('tilte');
             $table->string('content');
-            $table->url('multiple_images');
+            $table->json('multiple_images');
+            $table->boolean('approve')->default(0);
+            $table->foreignId('user_id')->constrained();
             $table->timestamp('Aproved_at');
             $table->timestamps();
         });

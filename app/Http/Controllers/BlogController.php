@@ -14,7 +14,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::get();
-        return view('blog.index' ,compact('blogs'));
+        return view('admin_pannel.create.blog_view' ,compact('blogs'));
     }
 
     /**
@@ -34,10 +34,7 @@ class BlogController extends Controller
             'title'=> 'Required|min:10',
             'comtent'=> 'Required|min:500'
         ];
-        $validator = Validator::make($request->all(), $data);
-        if($validator->fails()){
-            return redirect()->route('')->withInput()->withErrors($validator);
-        }
+        
 
         if($request->hasFile('multiple_images')) {
             $images =  $request->file('multiple_images');
@@ -48,8 +45,14 @@ class BlogController extends Controller
                 $image->move(public_path("/uploads"), $filename);
                 $imagepath[] = $filename;
             }
+
+            $validator = Validator::make($request->all(),$data);
+        if($validator->fails()){
+            return redirect()->route('')->withInput()->withErrors($validator);
+        }
             $data['multiple_images'] = json_encode($imagepath);
             $create = Blog::create($data);
+            return redirect()->route('')->with('success','Blog Added Successfully');
         }
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
 
@@ -30,8 +31,16 @@ Route::get('/thank-you', function () {
 
 
 Route::get('/blog-home', function () {
-    return view('blog.index.blade.php');
+    return view('blog.index');
 });
+
+Route::get('/dashboard', function() {
+    return view('admin_pannel.index');
+});
+
+//Admin Pannel Routes
+
+Route::get('/dashboard/blog/view', [BlogController::class, 'index'])->name('blog.create');
 
 
 
